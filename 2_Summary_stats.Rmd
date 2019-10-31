@@ -4,6 +4,7 @@ output: html_document
 ---
 
 ```{r load_libraries, include=FALSE}
+.libPaths(c("C:/Users/DAI035/data_school/Packages"))
 library(tidyverse)
 ```
 
@@ -14,7 +15,10 @@ to work with two inbuilt datasets, `sleep` and `InsectSprays`.
 ```{r datasets}
 #Learn about the datasets
 ?sleep
+sleep
 ?InsectSprays
+InsectSprays
+
 ```
 
 
@@ -32,13 +36,17 @@ for each experimental group in the `sleep` and `InsectSprays` data set.
 
 ```{r summary_stats}
 # Summarise sleep
+
 sleep %>% 
-  group_by(_____) %>% 
-  summarise(_____)
+  group_by(group) %>% 
+  summarise(mean(extra))
+
 
 # Summarise InsectSprays
-InsectSprays %>% 
-  _____
+
+InsectSprays %>%
+  group_by(spray) %>% 
+  summarise(mean(count)) 
 ```
 
 Are the summary statistics useful in understanding the data?
@@ -49,11 +57,15 @@ How does this compare with the plots of data distributions we have been producin
 # Boxplot for sleep data
 sleep %>% 
   ggplot(aes(x = group, y = extra)) +
-  geom_boxplot()
+  geom_boxplot(alpha = .2)+
+  geom_jitter(width = .2)
 
 # Boxplot for InsectSprays data
 InsectSprays %>% 
-  _____
+  ggplot(aes(x = spray, y = count))+
+  geom_boxplot()+
+  geom_jitter(width = .15, alpha = .5)
+ 
 ```
 
 
