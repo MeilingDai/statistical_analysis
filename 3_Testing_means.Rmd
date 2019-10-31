@@ -4,6 +4,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+.libPaths(c("C:/Users/DAI035/data_school/Packages"))
 library(tidyverse)
 ```
 
@@ -19,22 +20,24 @@ or summary statistics).
 
 ```{r t_tests}
 # sleep t test
-sleep_t <- t.test(_____ ~ _____, data = sleep)
+sleep_t <- t.test(extra ~ group, data = sleep)
 
 sleep_t
 
 # InsectSprays t test for sprays A and B
-spray_AB <- filter(InsectSprays, spray %in% c("A","B"))
+spray_CE <- filter(InsectSprays, spray %in% c("C","E"))
 
-spray_AB_t <- t.test(_____)
+spray_CE_t <- t.test(count ~ spray, data = spray_CE)
 
-spray_AB_t
+spray_CE_t
+
 
 # Choose your own pair of sprays to compare:
-
+spray_C <- filter(InsectSprays, spray %in% c("C"))
+shapiro.test(spray_C$count)
 ```
 
-What information does the t test show you, and how do you interpret these result?
+Whatshapiro.test()formation does the t test show you, and how do you interpret these result?
 
 
 ## t test summary
