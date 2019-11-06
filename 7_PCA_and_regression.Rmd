@@ -4,7 +4,9 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+.libPaths(c("C:/Users/DAI035/data_school/Packages"))
 library(tidyverse)
+library(ggResidpanel)
 ```
 
 # Principal Component Analysis
@@ -13,6 +15,7 @@ To introduce PCA, we will work with the inbuilt `mtcars` dataset. First, we will
 and scale them all to have mean equal to zero and standard deviation equal to one.
 
 ```{r mtcars_data}
+mtcars
 # Removing am and vs because they are categorical variables
 # Removing mpg because we will use it later to show how we can use PCA
 mtcars_scaled <- select(mtcars, -mpg, -am, -vs) %>% scale

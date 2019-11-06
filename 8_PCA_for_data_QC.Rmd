@@ -4,6 +4,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+.libPaths(c("C:/Users/DAI035/data_school/Packages"))
 library(tidyverse)
 ```
 
@@ -28,10 +29,12 @@ check that our experiment has been succesful before we begin a more detailed ana
 
 ```{r expression_pca}
 # Peform the PCA on the already scaled heat_stress data
-heat_stress_pca <- _____
+heat_stress_pca <- prcomp(heat_stress)
 
 # Check the summary
 summary(heat_stress_pca)
+
+plot(heat_stress_pca)
 ```
 
 Now, we would like to plot the samples along the principal components. Since the sample names are of
@@ -41,8 +44,9 @@ modify the code block below to show a plot along the first two principal compone
 heat_stress_pca$x %>% 
   as_tibble(rownames = "sample") %>% 
   separate(sample, into = c("replicate","timepoint"), sep = "_") %>% 
-  ggplot(aes(_____)) +
-  geom_point()
+  ggplot(aes(x = PC1, y = PC2, color = replicate)) +
+  geom_point()+
+  geom_text(aes(label= timepoint))
 ```
 
 Once you have got the basic plot working, try colouring the points by the replicate or the timepoint.
