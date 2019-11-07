@@ -20,6 +20,9 @@ heat_stress <- read_csv("data/transcriptome.csv") %>%
 
 # Dataset is 24 * 5380. Show just a small part as an example
 heat_stress[1:5, 1:5]
+
+heat_stress <- read_csv("data/transcriptome.csv")
+glimpse(heat_stress)
 ```
 
 This dataset has 24 rows (one for each sample), and 5380 columns (one for each gene). This very wide
@@ -47,6 +50,14 @@ heat_stress_pca$x %>%
   ggplot(aes(x = PC1, y = PC2, color = replicate)) +
   geom_point()+
   geom_text(aes(label= timepoint))
+
+
+heat_stress_pca$x %>% 
+  as_tibble(rownames = "sample") %>% 
+  separate(sample, into = c("replicate", "timepoint"), sep = "_") %>% 
+  ggplot(aes(x = PC5rowname
+             , y = PC4, color = timepoint))+
+ geom_text(aes(label= timepoint))
 ```
 
 Once you have got the basic plot working, try colouring the points by the replicate or the timepoint.
